@@ -19,7 +19,8 @@ export class TodoController {
       const todo = await todoService.findById(id);
 
       if (!todo) {
-        return res.status(404).json({ error: "Todo not found" });
+        res.status(404).json({ error: "Todo not found" });
+        return;
       }
 
       res.json(todo);
@@ -33,7 +34,8 @@ export class TodoController {
       const { title, color } = req.body;
 
       if (!title) {
-        return res.status(400).json({ error: "Title is required" });
+        res.status(400).json({ error: "Title is required" });
+        return;
       }
 
       const todo = await todoService.create({ title, color });
